@@ -1,0 +1,184 @@
+
+/*COMMON BASE STYLES*/
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #2d3c49;
+  font: 16px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #eee;
+  max-width: 60em;
+  padding: 1.25em;
+  margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+  color: #eee;
+}
+
+a:hover {
+  color: #bbb;
+}
+
+
+/*HEADER STYLES*/
+
+header {
+  text-align: center;
+  padding-bottom: 1em;
+  margin: 0 0 2em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #7d97ad;
+}
+
+.header-udacity-logo {
+  width: 5em;
+}
+
+.header-atdigaodev-logo {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+
+/*MAIN STYLES*/
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.hero img {
+  max-width: 100%;
+}
+
+.featured-title {
+  font-size: 2em;
+  color: #02b3e4;
+}
+
+.featured {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.card {
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.6);
+  margin: 0 1.25em;
+  position: relative;
+  width: calc(100% - 2.50em);
+  overflow: hidden;
+}
+
+.card img {
+  max-width: 100%;
+}
+
+.card-label {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  bottom: 0;
+  height: 30%;
+  width: 100%;
+  color: #fff;
+  padding: 1em;
+  word-wrap: break-word;
+}
+
+
+/* MEDIA QUERIES - BREAKPOINT: LESS THAN 850PX */
+
+@media screen and (max-width: 850px) {
+  .header-udacity-logo {
+    max-width: 3em;
+  }
+
+  .header-atdigaodev-logo {
+    font-weight: 500;
+    text-transform: uppercase;
+    max-width: 10em;
+  }
+
+  .featured-title {
+    font-size: 2em;
+  }
+
+  header {
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #7d97ad;
+    padding-bottom: 0;
+  }
+
+  .header-udacity-logo {
+    padding-bottom: 1em;
+    max-width: 5em;
+  }
+
+  .card-label {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: static;
+    text-align: center;
+    max-width: 100%;
+    height: initial;
+  }
+}
+
+
+/* MEDIA QUERIES - BREAKPOINT: LESS THAN 680PX */
+
+@media screen and (max-width: 680px) {
+  .header-udacity-logo {
+    max-width: 3em;
+  }
+
+  .header-atdigaodev-logo {
+    font-weight: 500;
+    text-transform: uppercase;
+    max-width: 10em;
+  }
+
+  .subtitle {
+    font-size: 1em;
+  }
+
+  .featured-title {
+    font-size: 1em;
+  }
+
+  .featured {
+    flex-flow: row wrap;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .card {
+    margin: 1.25em;
+    position: static;
+    padding: 1em;
+    box-shadow: none;
+  }
+
+  .card-label {
+    background-color: rgba(0, 0, 0, 0);
+    position: static;
+  }
+
+  .card img {
+    max-width: 60%;
+  }
+}
