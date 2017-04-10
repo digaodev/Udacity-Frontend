@@ -26,7 +26,7 @@ a:hover {
 
 /*HEADER STYLES*/
 
-header {
+.header {
   text-align: center;
   padding-bottom: 1em;
   margin: 0 0 2em 0;
@@ -63,9 +63,12 @@ main {
   max-width: 100%;
 }
 
+
 .featured-title {
+  flex: 1 1 100%;
   font-size: 2em;
   color: #02b3e4;
+  text-align: center;
 }
 
 .featured {
@@ -96,6 +99,7 @@ main {
   color: #fff;
   padding: 1em;
   word-wrap: break-word;
+  font-size: 0.85em;
 }
 
 
