@@ -6,10 +6,10 @@ This is a project for [Udacity's](https://udacity.com/) Frontend Web Nanodegree
 
 First, clone the repository to your local machine:
 ```
-$ git clone {YOUR_REPOSITORY_CLONE_URL}
+$ git clone https://github.com/digaodev/Udacity-Frontend.git
 ```
 
-Navigate to the main folder and open the index.html file:
+Navigate to the main folder for the game and open the index.html file:
 ```
 $ cd frontend-nanodegree-arcade-game
 ```
