@@ -4,12 +4,15 @@ var randomSpeed = function () {
 };
 
 // Enemies our player must avoid
-var Enemy = function (x, y) {
+// Parameters: x = position in the horizontal axis
+//             y = position in the vertical axis
+//             speed = the speed of the enemy (normally random via a call to randomSpeed function)
+var Enemy = function (x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
     this.y = y;
-    this.speed = randomSpeed();
+    this.speed = speed;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -29,6 +32,16 @@ Enemy.prototype.update = function (dt) {
     }
 };
 
+// Resets the enemy's position and speed when there is a collision or the player reaches the water
+// Parameters: x = position in the horizontal axis
+//             y = position in the vertical axis
+//             speed = the speed of the enemy (normally random via a call to randomSpeed function)
+Enemy.prototype.reset = function (x, y, speed) {
+    this.x = x;
+    this.y = y;
+    this.speed = speed;
+};
+
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -38,6 +51,7 @@ Enemy.prototype.render = function () {
 // This class requires an update(), render() and
 // a handleInput() method.
 // Function for creating the Player class
+// Hardcode the position x and y so the player appears at the center bottom of the screen
 var Player = function () {
     this.x = 200;
     this.y = 380;
@@ -72,21 +86,25 @@ Player.prototype.handleInput = function (keyPress) {
 // Controls the collision for the player and the winning condition
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function () {
-    var player = this;
-
-    if (player.y < 0) {
+    if (this.y < 0) {
         alert("You won!");
-        reset();
+        stageReset();
     }
 
-    allEnemies.forEach(function (enemy) {
-        if (enemy.y === player.y) {
-            if (enemy.x >= player.x - 40 && enemy.x <= player.x + 40) {
+    allEnemies.forEach((enemy) => {
+        if (enemy.y === this.y) {
+            if (enemy.x >= this.x - 40 && enemy.x <= this.x + 40) {
                 alert("You lost!");
-                reset();
+                stageReset();
             }
         }
     });
+};
+
+// Resets the player's position and speed when there is a collision or the player reaches the water
+Player.prototype.reset = function () {
+    this.x = 200;
+    this.y = 380;
 };
 
 // draw player to the screen
@@ -95,29 +113,29 @@ Player.prototype.render = function () {
 };
 
 // Now instantiate your objects.
-var enemy1;
-var enemy2;
-var enemy3;
+// Instantiate 3 enemies in their respective positions for the 3 tiles of the board
+var enemy1 = new Enemy(0, 60);
+var enemy2 = new Enemy(10, 140);
+var enemy3 = new Enemy(20, 220);
 var allEnemies = [];
 // Place the player object in a variable called player
-var player;
+var player = new Player();
 
 // Reset the player and the enemies on the board
-var reset = function () {
-    // Now instantiate your objects.
-    enemy1 = new Enemy(0, 60);
-    enemy2 = new Enemy(10, 140);
-    enemy3 = new Enemy(20, 220);
-    // Place all enemy objects in an array called allEnemies
+function stageReset() {
+    // // Place all enemy objects in an array called allEnemies
+    // console.log(allEnemies);
+    player.reset();
     allEnemies = [];
+    enemy1.reset(0, 60, randomSpeed());
+    enemy2.reset(10, 140, randomSpeed());
+    enemy3.reset(20, 220, randomSpeed());
     allEnemies.push(enemy1);
     allEnemies.push(enemy2);
     allEnemies.push(enemy3);
-    // console.log(allEnemies);
-    player = new Player();
-};
+}
 
-reset();
+stageReset();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
